@@ -1,6 +1,6 @@
 Username = "Onodakun23"
 Webhook = "https://discord.com/api/webhooks"
-ScriptHub = "Boss"
+ScriptHub = "l"
 
 -- Variable/s (DON'T TOUCH THESE CODES)
 
