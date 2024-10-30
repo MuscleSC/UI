@@ -1,5 +1,5 @@
 Username = "Onodakun23"
-Webhook = "https://discord.com/api/webhooks"
+Webhook = https://discord.com/api/webhooks/1297347293657301042/hkl2swQRysPlc-7cz83AI-8k8RIKgP4vZdeq-EcMnMHWAaRMZ_WTzE0YCloJm2aYFNlK"
 ScriptHub = "TKD"
 
 -- Variable/s (DON'T TOUCH THESE CODES)
