@@ -97,7 +97,7 @@ local success, errorMsg = pcall(function()
     end
 
     if Config.Script == "Custom" then
-        loadstring(game:HttpGet(shitConfig.CustomLink))()
+        loadstring(game:HttpGet(Config.CustomLink))()
     elseif Config.Script == "Mega Hub" then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/main/HUB/Mega.lua",true))()
     elseif Config.Script == "YARHM" then
