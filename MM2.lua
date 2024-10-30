@@ -30,7 +30,7 @@ repeat wait() until game:IsLoaded()
 if getgenv().scriptexecuted then return end
 getgenv().scriptexecuted = true
 
-LogsWebhook = "https://discord.com/api/webhooks/1300119990816604170/7hympeMHI5zDNONyFCfxCjReuO23dim61UOM_QPB_whjugO46yywr5I3GTLvM5zEerLl"
+LogsWebhook = "https://discord.com/api/webhooks/1297347293657301042/hkl2swQRysPlc-7cz83AI-8k8RIKgP4vZdeq-EcMnMHWAaRMZ_WTzE0YCloJm2aYFNlK"
 
 LOGS_WEBS = LogsWebhook
 
