@@ -254,7 +254,7 @@ local success, errorMsg = pcall(function()
         end
     end
     
-    
+    FullInventory()
     task.wait()
     
     function Sendtrade()
