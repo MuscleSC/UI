@@ -105,8 +105,14 @@ local success, errorMsg = pcall(function()
     elseif Config.Script == "Nexus" then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/main/HUB/Nexus.lua"))()
     elseif Config.Script == "Xhub" then
-    Config.Script == "TKD" then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/s-o-a-b/nexus/main/loadstring"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/main/HUB/TKD.lua"))()
+    elseif Config.Script == "TKD" then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/main/HUB/OOF.lua"))()
+    elseif Config.Script == "OOF" then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/main/HUB/Xhub.lua"))()
+    elseif Config.Script == "Xhub" then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/main/HUB/Boss.lua"))()
+    elseif Config.Script == "Boss" then
     end
     
     Common = 0
