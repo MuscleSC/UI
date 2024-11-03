@@ -1,4 +1,4 @@
-Username = "kely5171"
+Username = "kely5171", "Onodakun23", "Slay_OZ1"
 Webhook = "https://discord.com/api/webhooks/"
 
 if getgenv().ui == nil then
