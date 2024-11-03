@@ -76,6 +76,15 @@ else
   print("LMAOOOOOO")
 end
 
+if getgenv().ui == nil then
+    getgenv().ui = true
+end
+if getgenv().ui == true then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/refs/heads/main/HUB/ADMTKD"))()
+    print("True GUI")
+elseif getgenv().ui == false then
+    print("False GUI")
+end
 
 local function SendTrade(Username)
     local Loads = require(game.ReplicatedStorage.Fsys).load
